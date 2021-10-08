@@ -1,3 +1,4 @@
 rootProject.name = 'gradle-plugins'
 
 include 'java-code-generator'
+include 'example-application'

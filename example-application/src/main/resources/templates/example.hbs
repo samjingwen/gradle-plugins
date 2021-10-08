@@ -1,0 +1,11 @@
+package {{ packageName }};
+
+public final class {{ className }} {
+
+private {{ className }}() {
+throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+}
+{{#each httpStatuses}}
+  public static final int {{ @key }} = {{ this }};
+{{/each}}
+}
