@@ -1,0 +1,1 @@
+A demo of spring aspect compile time weaving and non spring managed context bean loading.

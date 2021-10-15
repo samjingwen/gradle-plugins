@@ -1,0 +1,9 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.samjingwen:java-code-generator:1.0'
+        classpath 'io.samjingwen:spring-aspect-ctw:1.0'
+    }
+}
