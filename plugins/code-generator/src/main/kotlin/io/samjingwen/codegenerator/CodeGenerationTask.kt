@@ -6,8 +6,6 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.SourceSet
-import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskAction
 import org.yaml.snakeyaml.Yaml
 import java.io.BufferedWriter
@@ -28,25 +26,19 @@ abstract class CodeGenerationTask : DefaultTask() {
 
     @TaskAction
     fun generate() {
-        val sourceSets = project.extensions.getByType(SourceSetContainer::class.java)
-        val mainSourceSet = sourceSets.getByName(SourceSet.MAIN_SOURCE_SET_NAME)
-
-        val resources = mainSourceSet.resources
-        val resourceDir = resources.sourceDirectories.asPath
-
-        val inputStream = FileInputStream(File(resourceDir, sourceFile.get()))
+        val inputStream = FileInputStream(File(sourceFile.get()))
         inputStream.use {
             val context: Map<String, Any> = Yaml().load(inputStream)
-            val buildDir = project.buildDir.path
 
-            val output = File("$buildDir/generated/codegen")
-            output.mkdirs()
+            val outputDir = File(outputFile.get())
+            outputDir.parentFile.mkdirs()
 
-            val loader = FileTemplateLoader(resourceDir)
+            val templateDir = File(templateFile.get())
+            val loader = FileTemplateLoader(templateDir.parent)
             val handlebars = Handlebars(loader)
-            val template = handlebars.compile(templateFile.get())
+            val template = handlebars.compile(templateDir.nameWithoutExtension)
             val content = template.apply(context)
-            writeFile(File(output, outputFile.get()), content)
+            writeFile(outputDir, content)
         }
     }
 }

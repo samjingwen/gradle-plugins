@@ -9,7 +9,7 @@ buildscript {
 }
 
 allprojects {
-    repositories{
+    repositories {
         mavenCentral()
     }
 }
@@ -19,7 +19,20 @@ plugins {
 }
 
 tasks.asciidoctor {
-    sourceDir(file("docs"))
+    sourceDir(file("docs/asciidoc"))
     setOutputDir(file("build/docs"))
+    attributes(
+        mapOf(
+            "toc" to "left",
+            "source-highlighter" to "prettify",
+            "icons" to "font",
+            "numbered" to "",
+            "idprefix" to "",
+            "docinfo1" to "true",
+            "sectanchors" to "true",
+            "samplesCodeDir" to "docs/samples",
+            "gitRepoUri" to "https://github.com/samjingwen/gradle-plugins"
+        )
+    )
 }
 

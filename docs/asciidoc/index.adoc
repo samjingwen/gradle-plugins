@@ -1,0 +1,39 @@
+= Code Generator Gradle Plugin
+
+Gradle plugin that generates code from handlebars template.
+
+== Applying The Plugin
+
+[source,kotlin]
+----
+include::{samplesCodeDir}/build.gradle.kts[tag=plugins]
+----
+
+== Configure Source, Output And Template File
+
+[source,kotlin]
+----
+include::{samplesCodeDir}/build.gradle.kts[tag=configuration]
+----
+
+== Add Output Directory To Source Sets
+
+[source,kotlin]
+----
+include::{samplesCodeDir}/build.gradle.kts[tag=sourcesets]
+----
+
+== Auto Generate Before Java Compilation
+
+[source,kotlin]
+----
+include::{samplesCodeDir}/build.gradle.kts[tag=dependencies]
+----
+
+== Complete Example
+
+See complete working example link:{gitRepoUri}/tree/master/examples/code-generator-example/src/main/java/io/samjingwen/example/DemoApplication.java[here].
+
+== Source Code
+
+link:{gitRepoUri}/tree/master/plugins/code-generator/src/main/kotlin/io/samjingwen/codegenerator[Github]

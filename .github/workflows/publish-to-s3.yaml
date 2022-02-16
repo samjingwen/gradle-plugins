@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -40,7 +39,7 @@ jobs:
 
       - name: Copy files to S3 bucket with the AWS CLI
         run: |
-          aws s3 sync ./build/docs s3://samjingwen.io --delete
+          aws s3 sync ./build/docs s3://samjingwen.io/gradle-plugins --delete
 
       - name: Invalidate CloudFront Cache
         run: |

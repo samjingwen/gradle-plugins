@@ -42,8 +42,8 @@ tasks.withType<Test> {
 }
 
 generateCode {
-    templateFile.set("/templates/example")
-    sourceFile.set("/source.yaml")
-    outputFile.set("HttpStatus.java")
+    templateFile.set("$projectDir/src/main/resources/templates/example.hbs")
+    sourceFile.set("$projectDir/src/main/resources/source.yaml")
+    outputFile.set("$buildDir/generated/codegen/HttpStatus.java")
 }
 
